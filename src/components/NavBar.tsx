@@ -14,7 +14,7 @@ export default function NavBar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
+      if (window.scrollY > 10) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -54,7 +54,6 @@ export default function NavBar() {
       className="bg-primary text-secondary relative">
       <img src="https://images.unsplash.com/photo-1586765501508-cffc1fe200c8?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="banner" className="w-full h-[60vh] object-cover" />
       <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
-      { /* Barra de búsqueda al dar click en el icono de búsqueda */}
       <div
         className={`fixed top-0 left-0 right-0 z-60 bg-[#f8f7ee] text-secondary transition-all duration-300 ${isSearchOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
           }`}
@@ -77,7 +76,6 @@ export default function NavBar() {
         </div>
       </div>
 
-      {/* Overlay para cerrar menús */}
       {(isMobileMenuOpen || isCartOpen) && (
         <div 
           className="fixed inset-0 bg-black/50 z-60 transition-opacity duration-300"
@@ -88,7 +86,6 @@ export default function NavBar() {
         />
       )}
 
-      {/* Menú móvil - desde la izquierda */}
       <div
         className={`fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-primary text-secondary z-70 transition-transform duration-300 ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
@@ -154,7 +151,6 @@ export default function NavBar() {
         </nav>
       </div>
 
-      {/* Panel de carrito - desde la derecha */}
       <div
         className={`fixed top-0 right-0 bottom-0 w-[85%] max-w-md bg-white z-70 transition-transform duration-300 flex flex-col ${
           isCartOpen ? "translate-x-0" : "translate-x-full"
@@ -240,7 +236,6 @@ export default function NavBar() {
             ? "bg-primary text-secondary" 
             : "bg-transparent text-white hover:bg-primary hover:text-secondary"
         }`}>
-        {/* Navbar Mobile */}
         <div className="lg:hidden flex items-center justify-between p-4 md:p-6">
           <Menu
             className="cursor-pointer"
@@ -298,7 +293,7 @@ export default function NavBar() {
           </div>
           <div>
             <nav>
-              <ul className="flex justify-center items-center gap-10 font-bold pb-4">
+              <ul className="flex justify-center items-center gap-10 font-bold">
                 {links.map((link) => (
                   <div
                     key={link.href}

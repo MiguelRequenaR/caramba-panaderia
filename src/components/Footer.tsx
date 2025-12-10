@@ -6,9 +6,12 @@ export default function Footer() {
     <footer
     className="bg-secondary text-white">
       <div
-      className="mx-20 py-20">
+      className="py-20 mx-auto max-w-7xl">
         <div
-        className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        className="grid grid-cols-1 md:grid-cols-3 gap-10"
+        data-aos="fade-up"
+        data-aos-delay="100"
+        >
           <div className="space-y-5">
             <h1 className="text-2xl font-bold uppercase text-center md:text-left">
               Caramba Panadería y <span className="hidden md:inline"><br /></span> Pastelería

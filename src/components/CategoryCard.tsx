@@ -10,13 +10,21 @@ export default function CategoryCard({ category }: CategoryCardProps) {
   return (
     <div
       className="space-y-3 mx-6">
-      <img src={category.image_url} alt={category.name}
+      <img 
+        src={category.image_url} 
+        alt={category.name}
+        data-aos="fade-up"
         className="h-[250px] w-full md:h-[400px] object-cover" />
-      <h3 className="text-xl font-bold text-secondary">
+      <h3 
+        data-aos="fade-up"
+        data-aos-delay="100"
+        className="text-xl font-bold text-secondary">
         {category.name}
       </h3>
       <p
-      className="text-secondary">
+        data-aos="fade-up"
+        data-aos-delay="200"
+        className="text-secondary">
         {productCount} productos
       </p>
     </div>

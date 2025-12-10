@@ -10,8 +10,13 @@ export default function StoreAndHistorySection() {
           src={storeAndHistoryImage}
           alt="Caramba Panadería y Pastelería"
           className="w-full max-w-xs md:max-w-full md:w-auto mb-6 md:mb-0"
+          data-aos="fade-right"
+          data-aos-delay="100"
         />
-        <div className="space-y-5 w-full md:w-auto">
+        <div className="space-y-5 w-full md:w-auto"
+        data-aos="fade-left"
+        data-aos-delay="200"
+        >
           <h2 className="text-2xl font-bold uppercase text-secondary text-center">
             Caramba Panadería y Pastelería <br /> te espera todos los días
           </h2>
@@ -26,7 +31,10 @@ export default function StoreAndHistorySection() {
         </div>
       </div>
       <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-8 md:gap-20 pt-20">
-        <div className="space-y-5 w-full md:w-auto">
+        <div className="space-y-5 w-full md:w-auto"
+        data-aos="fade-right"
+        data-aos-delay="100"
+        >
           <h2 className="text-2xl font-bold uppercase text-secondary text-center">
             Nuestra Historia
           </h2>
@@ -46,6 +54,8 @@ export default function StoreAndHistorySection() {
           src={storeAndHistoryImage2}
           alt=""
           className="w-full max-w-xs md:max-w-full md:w-auto mb-6 md:mb-0"
+          data-aos="fade-left"
+          data-aos-delay="200"
         />
       </div>
     </main>

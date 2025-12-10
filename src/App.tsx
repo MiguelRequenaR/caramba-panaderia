@@ -1,7 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MainLayout from '@/layout/MainLayout';
 import Home from '@/pages/home';
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,6 +17,15 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      once: false,
+      offset: 120,
+      easing: 'ease-in-out',
+    })
+  })
+
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
