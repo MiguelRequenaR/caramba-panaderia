@@ -1,10 +1,11 @@
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
 }
 
-export default function Button({ children }: ButtonProps) {
+export default function Button({ children, ...props }: ButtonProps) {
   return (
     <button
+      {...props}
       className="relative overflow-hidden bg-secondary px-5 py-2 uppercase cursor-pointer border border-secondary group transition-colors duration-500"
     >
       <span

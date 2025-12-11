@@ -3,6 +3,10 @@ import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MainLayout from '@/layout/MainLayout';
 import Home from '@/pages/home';
+import Products from '@/pages/products';
+import About from '@/pages/about';
+import Ubication from '@/pages/ubication';
+import Contact from '@/pages/contact';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
@@ -32,6 +36,10 @@ export default function App() {
         <Routes>
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Home />} />
+            <Route path='/productos' element={<Products />} />
+            <Route path='/nosotros' element={<About />} />
+            <Route path='/ubicacion' element={<Ubication />} />
+            <Route path='/contacto' element={<Contact />} />
           </Route>
         </Routes>
       </BrowserRouter>

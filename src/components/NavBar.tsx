@@ -1,11 +1,12 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { Search, User, ShoppingCart, X, Menu, ChevronRight, Minus, Plus, Trash2 } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useCartStore } from "@/store/useCartStore"
 
 export default function NavBar() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("/");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -50,10 +51,8 @@ export default function NavBar() {
     }
   ]
   return (
-    <main
+    <nav
       className="bg-primary text-secondary relative">
-      <img src="https://images.unsplash.com/photo-1586765501508-cffc1fe200c8?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="banner" className="w-full h-[60vh] object-cover" />
-      <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
       <div
         className={`fixed top-0 left-0 right-0 z-60 bg-[#f8f7ee] text-secondary transition-all duration-300 ${isSearchOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
           }`}
@@ -232,7 +231,7 @@ export default function NavBar() {
 
       <div
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled 
+          isScrolled || !isHomePage
             ? "bg-primary text-secondary" 
             : "bg-transparent text-white hover:bg-primary hover:text-secondary"
         }`}>
@@ -295,17 +294,17 @@ export default function NavBar() {
             <nav>
               <ul className="flex justify-center items-center gap-10 font-bold">
                 {links.map((link) => (
-                  <div
+                  <Link
                     key={link.href}
+                    to={link.href}
                     className="relative group cursor-pointer"
-                    onClick={() => setActiveLink(link.href)}
                   >
                     <span className="relative">
                       {link.label}
                       <span
                         className={`absolute left-0 bottom-0 h-0.5
-                          ${activeLink === link.href
-                            ? `w-full ${isScrolled ? "bg-secondary" : "bg-white"}`
+                          ${location.pathname === link.href
+                            ? `w-full ${isScrolled || !isHomePage ? "bg-secondary" : "bg-white"}`
                             : "w-0"
                           }
                           group-hover:w-full group-hover:bg-secondary
@@ -313,13 +312,13 @@ export default function NavBar() {
                         `}
                       ></span>
                     </span>
-                  </div>
+                  </Link>
                 ))}
               </ul>
             </nav>
           </div>
         </div>
       </div>
-    </main>
+    </nav>
   )
 }
