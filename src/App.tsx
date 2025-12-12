@@ -9,6 +9,7 @@ import Ubication from '@/pages/ubication';
 import Contact from '@/pages/contact';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import ScrollToTop from '@/utils/ScrollToTop';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Home />} />
