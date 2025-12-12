@@ -1,7 +1,7 @@
 
 export default function StoreLocation() {
   return (
-    <main
+    <section
     className="py-20 bg-[#f8f7ee]">
       <div
       className="max-w-7xl mx-auto">
@@ -64,6 +64,6 @@ export default function StoreLocation() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   )
 }

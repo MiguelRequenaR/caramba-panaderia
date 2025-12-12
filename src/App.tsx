@@ -29,7 +29,7 @@ export default function App() {
       offset: 120,
       easing: 'ease-in-out',
     })
-  })
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

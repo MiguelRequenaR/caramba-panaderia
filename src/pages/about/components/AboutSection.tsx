@@ -3,7 +3,7 @@ import storeAndHistoryImage2 from "@/assets/StoreAndHistorySection2.webp";
 
 export default function AboutSection() {
   return (
-    <main className="bg-[#f8f7ee] py-20 max-w-7xl mx-auto">
+    <section className="bg-[#f8f7ee] py-20 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
         <div className="space-y-5 w-full md:w-auto"
           data-aos="fade-up"
@@ -65,6 +65,6 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
-    </main>
+    </section>
   )
 }

@@ -1,7 +1,7 @@
 
 export default function CallToActionHome() {
   return (
-    <main
+    <section
     className="flex flex-col items-center justify-center py-10 bg-primary text-secondary space-y-5">
       <h2
         data-aos="fade-up"
@@ -29,6 +29,6 @@ export default function CallToActionHome() {
           ></span>
         </span>
       </a>
-    </main>
+    </section>
   )
 }

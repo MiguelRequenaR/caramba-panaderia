@@ -4,7 +4,7 @@ import storeAndHistoryImage2 from "@/assets/StoreAndHistorySection2.webp";
 
 export default function StoreAndHistorySection() {
   return (
-    <main className="bg-[#f8f7ee] py-20">
+    <section className="bg-[#f8f7ee] py-20">
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
         <img
           src={storeAndHistoryImage}
@@ -58,6 +58,6 @@ export default function StoreAndHistorySection() {
           data-aos-delay="200"
         />
       </div>
-    </main>
+    </section>
   )
 }

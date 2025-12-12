@@ -3,7 +3,7 @@ import { MapPin } from "lucide-react";
 
 export default function CallToActionLocation() {
   return (
-    <main
+    <section
     className="bg-primary text-secondary py-20">
       <div
       className="flex flex-col items-center justify-center space-y-5">
@@ -44,6 +44,6 @@ export default function CallToActionLocation() {
           </span>
         </a>
       </div>
-    </main>
+    </section>
   )
 }
