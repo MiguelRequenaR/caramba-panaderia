@@ -35,7 +35,7 @@ export default function CategoryCard() {
               <div
                 key={category.id}
                 className="space-y-3 mx-6 pb-5 cursor-pointer"
-                onClick={() => navigate(`/productos/${category.id}`)}
+                onClick={() => navigate(`/productos/${category.slug}`)}
               >
                 <img 
                   src={category.image_url} 

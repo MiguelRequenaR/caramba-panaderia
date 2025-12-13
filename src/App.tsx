@@ -5,6 +5,7 @@ import MainLayout from '@/layout/MainLayout';
 import Home from '@/pages/home';
 import Products from '@/pages/products';
 import CategoryProducts from '@/pages/products/components/CategoryProducts';
+import ProductDetail from '@/pages/products/components/ProductDetail';
 import About from '@/pages/about';
 import Ubication from '@/pages/ubication';
 import Contact from '@/pages/contact';
@@ -40,7 +41,8 @@ export default function App() {
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path='/productos' element={<Products />} />
-            <Route path='/productos/:categoryId' element={<CategoryProducts />} />
+            <Route path='/productos/:slug' element={<CategoryProducts />} />
+            <Route path='/productos/:slug/:productId' element={<ProductDetail />} />
             <Route path='/nosotros' element={<About />} />
             <Route path='/ubicacion' element={<Ubication />} />
             <Route path='/contacto' element={<Contact />} />

@@ -184,7 +184,22 @@ export default function NavBar() {
                   )}
                   <div className="flex-1">
                     <h3 className="font-semibold text-secondary">{item.name}</h3>
-                    <p className="text-sm text-gray-600">${item.price.toFixed(2)}</p>
+                    <p className="text-sm text-gray-600">S/.{item.price.toFixed(2)}</p>
+                    {item.deliveryDay && item.deliveryTime && (
+                      <div className="text-xs text-gray-600 mt-2 space-y-1">
+                        <p className="font-medium">
+                          Entrega: {new Date(item.deliveryDay + 'T00:00:00').toLocaleDateString('es-ES', { 
+                            weekday: 'long', 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        </p>
+                        <p className="font-medium">
+                          Horario: {item.deliveryTime === "09am-1pm" ? "09:00 AM - 1:00 PM" : item.deliveryTime === "1pm-8pm" ? "1:00 PM - 8:00 PM" : item.deliveryTime}
+                        </p>
+                      </div>
+                    )}
                     <div className="flex items-center gap-2 mt-2">
                       <button
                         onClick={() => decreaseQuantity(item.id)}

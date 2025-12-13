@@ -1,13 +1,16 @@
 import { useProductsByCategory } from "@/hooks/useProducts";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   categoryId: number;
   categoryName: string;
+  categorySlug: string;
 }
 
-export default function ProductCard({ categoryId, categoryName }: ProductCardProps) {
+export default function ProductCard({ categoryId, categoryName, categorySlug }: ProductCardProps) {
 
   const { data: products, isLoading, error } = useProductsByCategory(categoryId);
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -43,15 +46,33 @@ export default function ProductCard({ categoryId, categoryName }: ProductCardPro
   }
 
   return (
-    <main>
-      <h2>{categoryName}</h2>
-      {products?.map((product) => (
-        <div key={product.id}>
-          <img src={product.image_url} alt={product.name} />
-          <h3>{product.name}</h3>
-          <p>{product.price}</p>
-        </div>
-      ))}
+    <main
+    className="py-20">
+      <h2
+        className="text-center text-3xl font-bold uppercase text-secondary mb-10">{categoryName}</h2>
+      <div
+        className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        {products?.map((product) => (
+          <div
+            key={product.id}
+            onClick={() => navigate(`/productos/${categorySlug}/${product.id}`)}
+            className="space-y-3 cursor-pointer">
+            <img 
+              src={product.image_url} 
+              alt={product.name}
+              className="h-[250px] w-full md:h-[400px] object-cover" />
+            <h3
+              className="text-xl font-bold text-secondary uppercase">{product.name}</h3>
+            <div
+              className="flex justify-between items-center mx-1">
+              <p
+                className="text-secondary">{product.description}</p>
+              <p
+                className="text-secondary font-bold">S/.{product.price}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </main>
   )
 }

@@ -29,6 +29,21 @@ const fetchProductsByCategory = async (categoryId: number): Promise<Product[]> =
   return data || [];
 };
 
+const fetchProductById = async (productId: number): Promise<Product | null> => {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", productId)
+    .eq("is_available", true)
+    .single();
+  
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
+};
+
 
 export const useProducts = () => {
   return useQuery({
@@ -43,6 +58,15 @@ export const useProductsByCategory = (categoryId: number) => {
     queryKey: ["products", categoryId],
     queryFn: () => fetchProductsByCategory(categoryId),
     enabled: !!categoryId,
+    staleTime: 1000 * 60 * 5,
+  })
+}
+
+export const useProductById = (productId: number) => {
+  return useQuery({
+    queryKey: ["product", productId],
+    queryFn: () => fetchProductById(productId),
+    enabled: !!productId,
     staleTime: 1000 * 60 * 5,
   })
 }

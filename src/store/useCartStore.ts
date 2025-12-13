@@ -4,13 +4,15 @@ import type { Product } from '@/schemas';
 
 export interface CartItem extends Product {
   quantity: number;
+  deliveryDay?: string | null;
+  deliveryTime?: string | null;
 }
 
 interface CartState {
   cart: CartItem[];
   total: number;
   // acciones para el carrito
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, deliveryDay?: string | null, deliveryTime?: string | null) => void;
   removeFromCart: (productId: number) => void;
   increaseQuantity: (productId: number) => void;
   decreaseQuantity: (productId: number) => void;
@@ -23,14 +25,21 @@ export const useCartStore = create<CartState>()(
       cart: [],
       total: 0,
 
-      addToCart: (product) => {
+      addToCart: (product, deliveryDay = null, deliveryTime = null) => {
         const { cart } = get();
-        const existingItem = cart.find((item) => item.id === product.id);
+        // Buscar si existe un item con el mismo producto, día y horario
+        const existingItem = cart.find((item) => 
+          item.id === product.id && 
+          item.deliveryDay === deliveryDay && 
+          item.deliveryTime === deliveryTime
+        );
 
         if (existingItem) {
-          //en caso de que exista se aumenta la cantidad
+          // Si existe con el mismo día y horario, aumentar cantidad
           const updateCart = cart.map((item) => 
-            item.id === product.id
+            item.id === product.id && 
+            item.deliveryDay === deliveryDay && 
+            item.deliveryTime === deliveryTime
               ? {...item, quantity: item.quantity + 1}
               : item
           );
@@ -39,8 +48,13 @@ export const useCartStore = create<CartState>()(
             total: calculateTotal(updateCart),
           })
         } else {
-          // si es nuevo se agrega con una cantidad de 1
-          const updateCart = [...cart, {...product, quantity: 1}];
+          // Si es nuevo o tiene diferente día/horario, agregar como nuevo item
+          const updateCart = [...cart, {
+            ...product, 
+            quantity: 1,
+            deliveryDay,
+            deliveryTime
+          }];
           set({
             cart: updateCart,
             total: calculateTotal(updateCart),
