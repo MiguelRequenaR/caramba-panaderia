@@ -1,9 +1,9 @@
-import storeAndHistoryImage from "@/assets/StoreAndHistorySection1.webp";
-import storeAndHistoryImage2 from "@/assets/StoreAndHistorySection2.webp";
+import storeAndHistoryImage from "@/assets/StoreAndHistorySection3.png";
+import storeAndHistoryImage2 from "@/assets/StoreAndHistorySection1.png";
 
 export default function AboutSection() {
   return (
-    <section className="bg-[#f8f7ee] py-20 max-w-7xl mx-auto">
+    <section className="py-20 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
         <div className="space-y-5 w-full md:w-auto"
           data-aos="fade-up"
@@ -25,7 +25,7 @@ export default function AboutSection() {
         <img
           src={storeAndHistoryImage}
           alt="Caramba Panadería y Pastelería"
-          className="w-full max-w-xs md:max-w-full md:w-auto mb-6 md:mb-0"
+          className="md:w-[500px] md:h-[500px]"
           data-aos="fade-right"
           data-aos-delay="100"
         />
@@ -34,7 +34,7 @@ export default function AboutSection() {
         <img
           src={storeAndHistoryImage2}
           alt=""
-          className="w-full max-w-xs md:max-w-full md:w-auto mb-6 md:mb-0"
+          className="md:w-[500px] md:h-[500px]"
           data-aos="fade-up"
           data-aos-delay="200"
         />

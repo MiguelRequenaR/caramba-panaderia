@@ -1,8 +1,10 @@
 import { useCategories } from "@/hooks/useCategories";
+import { useNavigate } from "react-router-dom";
 
 export default function CategoryCard() {
   const { data: categories, isLoading, error } = useCategories();
-
+  const navigate = useNavigate();
+  
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -32,7 +34,9 @@ export default function CategoryCard() {
             return (
               <div
                 key={category.id}
-                className="space-y-3 mx-6">
+                className="space-y-3 mx-6 pb-5 cursor-pointer"
+                onClick={() => navigate(`/productos/${category.id}`)}
+              >
                 <img 
                   src={category.image_url} 
                   alt={category.name}

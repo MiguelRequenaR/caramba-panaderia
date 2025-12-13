@@ -6,14 +6,14 @@ export default function Contact() {
     <main
     className="bg-[#f8f7ee] pt-20 md:pt-50">
       <h1
-        className="text-3xl font-bold uppercase text-secondary text-center">
+        className="text-3xl font-bold uppercase text-secondary text-center" data-aos="fade-up" data-aos-delay="100">
         Contacto
       </h1>
       <p
-        className="text-secondary text-center text-lg font-bold">
+        className="text-secondary text-center text-lg font-bold" data-aos="fade-up" data-aos-delay="200">
         Contactanos para cualquier consulta
       </p>
-      <div className="max-w-2xl mx-auto space-y-4 py-10 text-center">
+      <div className="max-w-2xl mx-auto space-y-4 py-10 text-center" data-aos="fade-up" data-aos-delay="300">
         <div
           className="flex items-center gap-2 text-secondary justify-center"
         >

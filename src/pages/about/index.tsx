@@ -3,7 +3,7 @@ import AboutSection from "./components/AboutSection";
 export default function About() {
   return (
     <main
-    className="bg-[#f8f7ee] pt-20 md:pt-50"
+    className="bg-[#fdfdfd] pt-20 md:pt-50"
       data-aos="fade-up"
       data-aos-delay="100"
     >

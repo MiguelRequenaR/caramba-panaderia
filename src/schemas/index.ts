@@ -12,7 +12,7 @@ export const ProductSchema = z.object({
   id: z.number(),
   name: z.string(),
   price: z.number().positive(),
-  image_url: z.string().nullable(),
+  image_url: z.string().nullable().transform((val) => val || ""),
   description: z.string().nullable(),
   is_available: z.boolean().default(true),
   category_id: z.number(),
