@@ -2,8 +2,11 @@ import { Link, useLocation } from "react-router-dom"
 import { Search, User, ShoppingCart, X, Menu, ChevronRight, Minus, Plus, Trash2 } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useCartStore } from "@/store/useCartStore"
+import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,6 +15,14 @@ export default function NavBar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   
   const { cart, total, increaseQuantity, decreaseQuantity, removeFromCart } = useCartStore();
+
+  const handleRemoveFromCart = (productId: number) => {
+    const product = cart.find((item) => item.id === productId);
+    if (product) {
+      removeFromCart(productId);
+      toast.error("Producto eliminado del carrito.")
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -218,13 +229,13 @@ export default function NavBar() {
                   </div>
                   <div className="flex flex-col justify-between items-end">
                     <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-red-500 hover:text-red-700"
+                      onClick={() => handleRemoveFromCart(item.id)}
+                      className="text-red-500 hover:text-red-700 cursor-pointer"
                     >
                       <Trash2 size={18} />
                     </button>
                     <p className="font-semibold text-secondary">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      S/.{(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
                 </div>
@@ -234,9 +245,15 @@ export default function NavBar() {
             <div className="border-t p-6 space-y-4">
               <div className="flex justify-between text-lg font-bold">
                 <span>Total:</span>
-                <span className="text-secondary">${total.toFixed(2)}</span>
+                <span className="text-secondary">S/.{total.toFixed(2)}</span>
               </div>
-              <button className="w-full bg-secondary text-white py-3 rounded-lg font-bold hover:bg-secondary/90 transition-colors">
+              <button 
+                className="w-full bg-secondary text-white py-3 rounded-lg font-bold hover:bg-secondary/90 transition-colors cursor-pointer"
+                onClick={() => {
+                  setIsCartOpen(false);
+                  navigate("/checkout");
+                }}
+              >
                 Finalizar Compra
               </button>
             </div>

@@ -9,8 +9,11 @@ import ProductDetail from '@/pages/products/components/ProductDetail';
 import About from '@/pages/about';
 import Ubication from '@/pages/ubication';
 import Contact from '@/pages/contact';
+import Checkout from '@/pages/checkout';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 import ScrollToTop from '@/utils/ScrollToTop';
 
 const queryClient = new QueryClient({
@@ -46,8 +49,21 @@ export default function App() {
             <Route path='/nosotros' element={<About />} />
             <Route path='/ubicacion' element={<Ubication />} />
             <Route path='/contacto' element={<Contact />} />
+            <Route path='/checkout' element={<Checkout />} />
           </Route>
         </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </BrowserRouter>
     </QueryClientProvider>
   )

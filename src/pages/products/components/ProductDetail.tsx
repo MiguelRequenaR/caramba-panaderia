@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { useProductById } from "@/hooks/useProducts"
 import { useCartStore } from "@/store/useCartStore"
 import Button from "@/components/Button"
+import { toast } from "react-toastify"
 
 export default function ProductDetail() {
   const { slug, productId } = useParams<{ slug: string, productId: string }>();
@@ -51,7 +52,7 @@ export default function ProductDetail() {
 
   const handleAddToCart = () => {
     if (!selectedDay || !selectedTime) {
-      alert("Por favor, selecciona una fecha y hora de entrega.")
+      toast.error("Por favor, selecciona una fecha y hora de entrega.")
       return;
     }
 
@@ -59,7 +60,7 @@ export default function ProductDetail() {
       addToCart(product!, selectedDay, selectedTime);
     }
 
-    alert(`Se agregaron ${quantity} unidades del producto ${product?.name} a tu carrito.`)
+    toast.success(`Se agregaron ${quantity} unidades a tu carrito.`)
     
     setQuantity(1);
   }
@@ -114,19 +115,19 @@ export default function ProductDetail() {
     <main
       className="pt-20 md:pt-50 bg-[#f8f7ee]">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-10">
-          <Button onClick={handleBackToCategory}>
-            Volver
+        <div className="mb-10 mx-4 md:mx-0">
+          <Button onClick={handleBackToCategory} data-aos="zoom-in">
+            ← Volver
           </Button>
         </div>
         <div
-          className="grid grid-cols-1 md:grid-cols-2 gap-10 py-5 md:py-10 mx-4 md:mx-0">
+          className="grid grid-cols-1 md:grid-cols-2 gap-10 md:py-10 mx-4 md:mx-0">
           <div
             className="flex justify-center">
-            <img src={product.image_url} alt={product.name} className="w-[400px] md:h-[650px] object-cover" />
+            <img src={product.image_url} alt={product.name} className="w-[400px] md:h-[650px] object-cover" data-aos="fade-up" data-aos-delay="100" />
           </div>
           <div
-            className="space-y-5">
+            className="space-y-5" data-aos="fade-up" data-aos-delay="200">
             <h2
               className="text-4xl font-bold uppercase text-secondary">
               {product.name}
@@ -168,7 +169,8 @@ export default function ProductDetail() {
                 value={selectedDay || ""}
                 onChange={handleDateChange}
                 min={getMinDate()}
-                className="w-full px-4 py-2 border border-secondary/30 focus:outline-none focus:border-secondary text-secondary"
+                className="block max-w-full w-full px-4 py-2 border border-secondary/30 focus:outline-none focus:border-secondary text-secondary box-border"
+                style={{ maxWidth: '100%' }}
               />
             </div>
 

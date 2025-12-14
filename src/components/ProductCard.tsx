@@ -47,7 +47,7 @@ export default function ProductCard({ categoryId, categoryName, categorySlug }: 
 
   return (
     <main
-    className="py-20">
+    className="py-10">
       <h2
         className="text-center text-3xl font-bold uppercase text-secondary mb-10">{categoryName}</h2>
       <div
@@ -60,15 +60,27 @@ export default function ProductCard({ categoryId, categoryName, categorySlug }: 
             <img 
               src={product.image_url} 
               alt={product.name}
-              className="h-[250px] w-full md:h-[400px] object-cover" />
+              className="h-[250px] w-full md:h-[400px] object-cover" 
+              data-aos="fade-up"
+              data-aos-delay="100"
+              />
             <h3
-              className="text-xl font-bold text-secondary uppercase">{product.name}</h3>
+              className="text-xl font-bold text-secondary uppercase"
+              data-aos="fade-up"
+              data-aos-delay="200"
+              >{product.name}</h3>
             <div
               className="flex justify-between items-center mx-1">
               <p
-                className="text-secondary">{product.description}</p>
+                className="text-secondary"
+                data-aos="fade-up"
+                data-aos-delay="300"
+                >{product.description}</p>
               <p
-                className="text-secondary font-bold">S/.{product.price}</p>
+                className="text-secondary font-bold"
+                data-aos="fade-up"
+                data-aos-delay="400"
+                >S/.{product.price}</p>
             </div>
           </div>
         ))}

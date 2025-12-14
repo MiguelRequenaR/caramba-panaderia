@@ -61,8 +61,8 @@ export default function CategoryProducts() {
 
   return (
     <main className="bg-[#f8f7ee] min-h-screen pt-10 md:pt-40">
-      <div className="max-w-7xl mx-auto px-6 py-10">
-        <Button onClick={() => navigate("/productos")} className="mb-6">
+      <div className="max-w-7xl mx-auto px-4 py-10">
+        <Button onClick={() => navigate("/productos")} className="mb-6" data-aos="zoom-in">
           ← Volver a categorías
         </Button>
         <ProductCard categoryId={category.id} categoryName={category.name} categorySlug={category.slug}/>

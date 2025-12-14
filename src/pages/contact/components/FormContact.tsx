@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import { useState, type FormEvent } from "react";
 import { sendWhatsappMessage } from "@/utils/whatsapp";
 import { ContactFormSchema, type ContactForm } from "@/schemas";
+import { toast } from "react-toastify";
 
 export default function FormContact() {
   const [formData, setFormData] = useState<ContactForm>({
@@ -55,7 +56,7 @@ export default function FormContact() {
       message: "",
     });
 
-    alert("¡Mensaje enviado! Serás redirigido a WhatsApp.");
+    toast.success("¡Mensaje enviado! Serás redirigido a WhatsApp.");
   };
 
   return (
