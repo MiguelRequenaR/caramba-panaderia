@@ -1,4 +1,3 @@
-import Button from "@/components/Button";
 import { Link } from "react-router-dom";
 import storeAndHistoryImage from "@/assets/StoreAndHistorySection1.png";
 import storeAndHistoryImage2 from "@/assets/StoreAndHistorySection2.png";
@@ -25,9 +24,17 @@ export default function StoreAndHistorySection() {
             Conoce nuestras un poco más sobre nuestras tiendas
           </p>
           <div className="flex justify-center">
-            <Button>
-              Conoce más
-            </Button>
+            <Link to="/productos"
+              className="relative overflow-hidden bg-secondary px-5 py-2 uppercase cursor-pointer border border-secondary group transition-colors duration-500">
+              <span
+                className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out pointer-events-none"
+              />
+              <span
+                className="relative z-10 transition-colors duration-500 text-white group-hover:text-secondary font-bold"
+              >
+                Conoce más
+              </span>
+            </Link>
           </div>
         </div>
       </div>
