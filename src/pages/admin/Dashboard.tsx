@@ -37,7 +37,7 @@ export default function Dashboard() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col items-center md:items-start">
-        <h1 className="text-3xl font-bold text-secondary mb-2">Dashboard</h1>
+        <h2 className="text-3xl font-bold text-secondary mb-2">Dashboard</h2>
         <p className="text-secondary">Bienvenido al panel de administración</p>
       </div>
 

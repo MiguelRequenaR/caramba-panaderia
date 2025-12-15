@@ -5,10 +5,10 @@ export default function Contact() {
   return (
     <main
     className="bg-[#f8f7ee] pt-20 md:pt-50">
-      <h1
+      <h2
         className="text-3xl font-bold uppercase text-secondary text-center" data-aos="fade-up" data-aos-delay="100">
         Contacto
-      </h1>
+      </h2>
       <p
         className="text-secondary text-center text-lg font-bold" data-aos="fade-up" data-aos-delay="200">
         Contactanos para cualquier consulta

@@ -7,10 +7,10 @@ export default function Products() {
       data-aos="fade-up"
       data-aos-delay="100"
     >
-      <h1
+      <h2
         className="text-2xl font-bold uppercase text-secondary text-center">
         Encuentra todos nuestros productos
-      </h1>
+      </h2>
       <p
         className="text-secondary text-center font-bold">
         Listos para satisfacer hasta los más exigentes gustos

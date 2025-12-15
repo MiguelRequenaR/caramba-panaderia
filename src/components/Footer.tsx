@@ -14,7 +14,7 @@ export default function Footer() {
         >
           <div className="space-y-5">
             <h1 className="text-2xl font-bold uppercase text-center md:text-left">
-              Caramba Panadería y <span className="hidden md:inline"><br /></span> Pastelería
+              Caramba Panaderia y <span className="hidden md:inline"><br /></span> Pasteleria
             </h1>
             <p className="text-center md:text-left">
               Caramba Panadería y Pastelería es una

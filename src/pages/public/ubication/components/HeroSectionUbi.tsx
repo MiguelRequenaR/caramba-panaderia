@@ -7,12 +7,12 @@ export default function HeroSectionUbi() {
         className="w-full h-[70vh] object-cover" 
       />
       <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
-      <h1
+      <h2
         className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-20 text-6xl font-bold uppercase text-white text-center"
         data-aos="fade-up"
       >
         Nuestras Tiendas
-      </h1>
+      </h2>
     </div>
   )
 }

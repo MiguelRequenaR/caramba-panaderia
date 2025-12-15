@@ -7,10 +7,10 @@ export default function About() {
       data-aos="fade-up"
       data-aos-delay="100"
     >
-      <h1
+      <h2
         className="text-3xl font-bold uppercase text-secondary text-center">
         Nuestra Historia
-      </h1>
+      </h2>
       <p
         className="text-secondary text-center text-lg font-bold">
         Conoce un poco más sobre nosotros
