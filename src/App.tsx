@@ -2,14 +2,19 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MainLayout from '@/layout/MainLayout';
-import Home from '@/pages/home';
-import Products from '@/pages/products';
-import CategoryProducts from '@/pages/products/components/CategoryProducts';
-import ProductDetail from '@/pages/products/components/ProductDetail';
-import About from '@/pages/about';
-import Ubication from '@/pages/ubication';
-import Contact from '@/pages/contact';
-import Checkout from '@/pages/checkout';
+import AdminLayout from '@/layout/AdminLayout';
+import Home from '@/pages/public/home';
+import Products from '@/pages/public/products';
+import CategoryProducts from '@/pages/public/products/components/CategoryProducts';
+import ProductDetail from '@/pages/public/products/components/ProductDetail';
+import About from '@/pages/public/about';
+import Ubication from '@/pages/public/ubication';
+import Contact from '@/pages/public/contact';
+import Checkout from '@/pages/public/checkout';
+import Login from '@/pages/(auth)/Login';
+import Dashboard from '@/pages/admin/Dashboard';
+import AdminProducts from '@/pages/admin/products/AdminProducts';
+import AdminCategories from '@/pages/admin/products/CategoryProducts';
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import 'react-toastify/dist/ReactToastify.css'
@@ -41,6 +46,7 @@ export default function App() {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
+          <Route path='/auth/login' element={<Login />} />
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path='/productos' element={<Products />} />
@@ -50,6 +56,11 @@ export default function App() {
             <Route path='/ubicacion' element={<Ubication />} />
             <Route path='/contacto' element={<Contact />} />
             <Route path='/checkout' element={<Checkout />} />
+          </Route>
+          <Route path='/admin' element={<AdminLayout />}>
+            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='productos' element={<AdminProducts />} />
+            <Route path='categorias' element={<AdminCategories />} />
           </Route>
         </Routes>
         <ToastContainer

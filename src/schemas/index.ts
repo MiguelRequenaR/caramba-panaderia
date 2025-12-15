@@ -77,7 +77,17 @@ export const CheckoutFormSchema = z.object({
   path: ["razonSocial"],
 })
 
+export const LoginSchema = z.object({
+  email: z.string()
+    .email("Ingresa un correo electrónico válido")
+    .min(1, "El correo electrónico es requerido"),
+  password: z.string()
+    .min(8, "La contraseña debe tener al menos 8 caracteres")
+    .max(50, "La contraseña no debe tener más de 50 caracteres"),
+})
+
 export type Category = z.infer<typeof CategorySchema>;
 export type Product = z.infer<typeof ProductSchema>;
 export type ContactForm = z.infer<typeof ContactFormSchema>;
 export type CheckoutForm = z.infer<typeof CheckoutFormSchema>;
+export type LoginForm = z.infer<typeof LoginSchema>;

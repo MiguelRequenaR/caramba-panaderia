@@ -279,7 +279,11 @@ export default function NavBar() {
             </h1>
           </Link>
           <div className="flex items-center gap-3">
-            <User className="cursor-pointer" size={24} />
+            <User 
+              className="cursor-pointer" 
+              size={24} 
+              onClick={() => navigate("/auth/login")}
+            />
             <div className="relative">
               <ShoppingCart 
                 className="cursor-pointer" 
@@ -308,7 +312,10 @@ export default function NavBar() {
               </h1>
             </Link>
             <div className="flex items-center gap-4">
-              <User className="cursor-pointer" />
+              <User 
+                className="cursor-pointer" 
+                onClick={() => navigate("/auth/login")}
+              />
               <div className="relative">
                 <ShoppingCart 
                   className="cursor-pointer"
