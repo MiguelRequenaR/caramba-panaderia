@@ -42,7 +42,7 @@ export default function Dashboard() {
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="100">
         {/* Total Productos */}
         <div className="bg-white rounded-lg shadow-md p-6 border-2 border-secondary">
           <div className="flex items-center justify-between">
@@ -97,7 +97,7 @@ export default function Dashboard() {
       </div>
 
       {/* Accesos Rápidos */}
-      <div className="bg-white rounded-lg shadow-md p-6">
+      <div className="bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="200">
         <h2 className="text-xl font-bold text-secondary mb-4 flex items-center gap-2">
           <TrendingUp className="w-6 h-6" />
           Accesos Rápidos
@@ -131,7 +131,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" data-aos="fade-up" data-aos-delay="300">
         {/* Productos por Categoría */}
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-xl font-bold text-secondary mb-4">Productos por Categoría</h2>

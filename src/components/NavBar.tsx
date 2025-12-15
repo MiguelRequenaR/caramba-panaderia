@@ -4,6 +4,9 @@ import { useEffect, useState } from "react"
 import { useCartStore } from "@/store/useCartStore"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import { useProducts } from "@/hooks/useProducts"
+import { useCategories } from "@/hooks/useCategories"
+import type { Product } from "@/schemas"
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -13,8 +16,20 @@ export default function NavBar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   
   const { cart, total, increaseQuantity, decreaseQuantity, removeFromCart } = useCartStore();
+  const { data: products = [] } = useProducts();
+  const { data: categories = [] } = useCategories();
+
+  const filteredProducts = searchQuery.trim() === "" 
+    ? [] 
+    : products.filter((product: Product) => 
+        product.is_available && (
+          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          product.description?.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
 
   const handleRemoveFromCart = (productId: number) => {
     const product = cart.find((item) => item.id === productId);
@@ -22,6 +37,19 @@ export default function NavBar() {
       removeFromCart(productId);
       toast.error("Producto eliminado del carrito.")
     }
+  }
+
+  const handleCloseSearch = () => {
+    setIsSearchOpen(false);
+    setSearchQuery("");
+  }
+
+  const handleProductClick = (productId: number, categoryId: number) => {
+    const category = categories.find((cat) => cat.id === categoryId);
+    const categorySlug = category?.slug || 'sin-categoria';
+    
+    navigate(`/productos/${categorySlug}/${productId}`);
+    handleCloseSearch();
   }
 
   useEffect(() => {
@@ -65,14 +93,16 @@ export default function NavBar() {
     <nav
       className="bg-primary text-secondary relative">
       <div
-        className={`fixed top-0 left-0 right-0 z-60 bg-[#f8f7ee] text-secondary transition-all duration-300 ${isSearchOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-          }`}
+        className={`fixed top-0 left-0 right-0 bottom-0 z-60 bg-[#f8f7ee] text-secondary transition-all duration-300 ${isSearchOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+          } overflow-y-auto`}
       >
-        <div className="flex items-center justify-center p-10 gap-4">
+        <div className="flex items-center justify-center p-10 gap-4 sticky top-0 bg-[#f8f7ee] z-10 border-b border-secondary/10">
           <div className="flex-1 max-w-4xl relative">
             <input
               type="text"
               placeholder="Buscar en nuestra tienda"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-6 py-4 pr-12 rounded-lg border-2 border-secondary focus:outline-none focus:border-secondary/70 text-lg"
               autoFocus
             />
@@ -81,8 +111,79 @@ export default function NavBar() {
           <X
             className="cursor-pointer hover:rotate-90 transition-transform duration-300"
             size={32}
-            onClick={() => setIsSearchOpen(false)}
+            onClick={handleCloseSearch}
           />
+        </div>
+
+        {/* Resultados de búsqueda */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {searchQuery.trim() !== "" && (
+            <>
+              {filteredProducts.length > 0 ? (
+                <>
+                  <h2 className="text-2xl font-bold mb-6">
+                    {filteredProducts.length} {filteredProducts.length === 1 ? 'resultado' : 'resultados'} para "{searchQuery}"
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    {filteredProducts.map((product: Product) => (
+                      <div
+                        key={product.id}
+                        onClick={() => handleProductClick(product.id, product.category_id)}
+                        className="overflow-hidden border-2 border-secondary rounded-lg p-2 transition-all duration-300 cursor-pointer "
+                      >
+                        {product.image_url && (
+                          <div className="aspect-square overflow-hidden">
+                            <img
+                              src={product.image_url}
+                              alt={product.name}
+                              className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                            />
+                          </div>
+                        )}
+                        <div className="p-4">
+                          <h3 className="font-bold text-lg text-secondary mb-2 line-clamp-2">
+                            {product.name}
+                          </h3>
+                          {product.description && (
+                            <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                              {product.description}
+                            </p>
+                          )}
+                          <div className="flex items-center justify-between">
+                            <span className="text-xl font-bold text-secondary">
+                              S/.{product.price.toFixed(2)}
+                            </span>
+                            {product.is_available && (
+                              <span className="text-xs text-green-600 font-semibold">
+                                Disponible
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <div className="text-center py-16">
+                  <Search className="mx-auto mb-4 text-secondary font-bold" size={64} />
+                  <h2 className="text-2xl font-bold mb-2">No se encontraron productos</h2>
+                  <p className="text-secondary">
+                    No encontramos productos que coincidan con "{searchQuery}". Intenta con otros términos de búsqueda.
+                  </p>
+                </div>
+              )}
+            </>
+          )}
+          {searchQuery.trim() === "" && (
+            <div className="text-center py-16">
+              <Search className="mx-auto mb-4 text-secondary font-bold" size={64} />
+              <h2 className="text-2xl font-bold mb-2">Busca tus productos favoritos</h2>
+              <p className="text-secondary">
+                Escribe el nombre del producto que estás buscando
+              </p>
+            </div>
+          )}
         </div>
       </div>
 

@@ -67,7 +67,7 @@ export default function CategoryProducts() {
   }
 
   return (
-    <section>
+    <section data-aos="fade-up" data-aos-delay="100">
       <div className="mb-6 flex flex-col md:flex-row md:justify-between items-center space-y-4 md:space-y-0">
         <div>
           <h1 className="text-3xl font-bold text-secondary mb-2">Categorías</h1>
