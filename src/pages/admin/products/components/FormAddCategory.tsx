@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import { toast } from 'react-toastify';
 import { useQueryClient } from '@tanstack/react-query';
-import type { Category } from '@/schemas';
+import { CreateCategorySchema, type Category, type CreateCategoryForm } from '@/schemas';
 
 interface FormAddCategoryProps {
   onClose: () => void;
@@ -16,11 +16,13 @@ export default function FormAddCategory({ onClose, category }: FormAddCategoryPr
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<CreateCategoryForm>({
     name: '',
     slug: '',
+    image_url: '',
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [errors, setErrors] = useState<Partial<Record<keyof CreateCategoryForm, string>>>({});
 
   // Cargar datos de la categoría si está en modo edición
   useEffect(() => {
@@ -28,6 +30,7 @@ export default function FormAddCategory({ onClose, category }: FormAddCategoryPr
       setFormData({
         name: category?.name || '',
         slug: category?.slug || '',
+        image_url: category?.image_url || '',
       });
       setPreview(category?.image_url || null);
     } else {
@@ -35,10 +38,12 @@ export default function FormAddCategory({ onClose, category }: FormAddCategoryPr
       setFormData({
         name: '',
         slug: '',
+        image_url: '',
       });
       setPreview(null);
       setImageFile(null);
     }
+    setErrors({});
   }, [category]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +60,13 @@ export default function FormAddCategory({ onClose, category }: FormAddCategoryPr
         .replace(/(^-|-$)/g, ''); // Eliminar guiones al inicio y final
       setFormData(prev => ({ ...prev, slug }));
     }
+
+    if (errors[name as keyof CreateCategoryForm]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: undefined,
+      }));
+    }
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,6 +79,22 @@ export default function FormAddCategory({ onClose, category }: FormAddCategoryPr
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    // Validar con Zod
+    const result = CreateCategorySchema.safeParse(formData);
+
+    if (!result.success) {
+      const newErrors: Partial<Record<keyof CreateCategoryForm, string>> = {};
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0] as keyof CreateCategoryForm;
+        newErrors[field] = issue.message;
+      });
+      setErrors(newErrors);
+      toast.error("Por favor, corrige los errores en el formulario");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -94,8 +122,8 @@ export default function FormAddCategory({ onClose, category }: FormAddCategoryPr
       }
 
       const updateData: any = {
-        name: formData.name,
-        slug: formData.slug,
+        name: result.data.name,
+        slug: result.data.slug,
       };
 
       if (imageUrl) {
@@ -140,11 +168,13 @@ export default function FormAddCategory({ onClose, category }: FormAddCategoryPr
           <input
             type="text"
             name="name"
-            required
             className="mt-1 block w-full rounded-md border text-secondary border-secondary px-3 py-2 focus:border-orange-500 focus:outline-none"
             value={formData.name}
             onChange={handleChange}
           />
+          {errors.name && (
+            <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+          )}
         </div>
 
         {/* Slug */}
@@ -153,12 +183,14 @@ export default function FormAddCategory({ onClose, category }: FormAddCategoryPr
           <input
             type="text"
             name="slug"
-            required
             className="mt-1 block w-full rounded-md border text-secondary border-secondary px-3 py-2 focus:border-orange-500 focus:outline-none"
             value={formData.slug}
             onChange={handleChange}
             placeholder="ejemplo: pan-dulce"
           />
+          {errors.slug && (
+            <p className="mt-1 text-sm text-red-600">{errors.slug}</p>
+          )}
           <p className="mt-1 text-xs text-gray-500">Este campo se genera automáticamente, pero puedes editarlo</p>
         </div>
 

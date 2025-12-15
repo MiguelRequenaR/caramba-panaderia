@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabaseClient';
 import { useCategories } from '@/hooks/useCategories';
 import { toast } from 'react-toastify';
 import { useQueryClient } from '@tanstack/react-query';
-import type { Product } from '@/schemas';
+import { CreateProductSchema, type Product, type CreateProductForm } from '@/schemas';
 
 interface FormAddProductProps {
   onClose: () => void;
@@ -18,41 +18,66 @@ export default function FormAddProduct({ onClose, product }: FormAddProductProps
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<CreateProductForm>({
     name: '',
     description: '',
-    price: '',
-    category_id: '',
+    price: 0,
+    category_id: 0,
     is_available: false,
+    image_url: '',
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [errors, setErrors] = useState<Partial<Record<keyof CreateProductForm, string>>>({});
 
   useEffect(() => {
     if (product) {
       setFormData({
         name: product?.name || '',
         description: product?.description || '',
-        price: product?.price.toString() || '',
-        category_id: product?.category_id.toString() || '',
+        price: product?.price || 0,
+        category_id: product?.category_id || 0,
         is_available: product?.is_available || false,
+        image_url: product?.image_url || '',
       });
       setPreview(product?.image_url || null);
     } else {
       setFormData({
         name: '',
         description: '',
-        price: '',
-        category_id: '',
+        price: 0,
+        category_id: 0,
         is_available: false,
+        image_url: '',
       });
       setPreview(null);
       setImageFile(null);
     }
+    setErrors({});
   }, [product]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    
+    let finalValue: string | number = value;
+    
+    // Convertir a número si es campo numérico
+    if (type === 'number' || name === 'price') {
+      finalValue = parseFloat(value) || 0;
+    } else if (name === 'category_id') {
+      finalValue = parseInt(value) || 0;
+    }
+    
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: finalValue
+    }));
+
+    if (errors[name as keyof CreateProductForm]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: undefined,
+      }));
+    }
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +90,22 @@ export default function FormAddProduct({ onClose, product }: FormAddProductProps
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    // Validar con Zod
+    const result = CreateProductSchema.safeParse(formData);
+
+    if (!result.success) {
+      const newErrors: Partial<Record<keyof CreateProductForm, string>> = {};
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0] as keyof CreateProductForm;
+        newErrors[field] = issue.message;
+      });
+      setErrors(newErrors);
+      toast.error("Por favor, corrige los errores en el formulario");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -91,11 +132,11 @@ export default function FormAddProduct({ onClose, product }: FormAddProductProps
       }
 
       const updateData: any = {
-        name: formData.name,
-        description: formData.description,
-        price: parseFloat(formData.price),
-        category_id: parseInt(formData.category_id),
-        is_available: formData.is_available,
+        name: result.data.name,
+        description: result.data.description,
+        price: result.data.price,
+        category_id: result.data.category_id,
+        is_available: result.data.is_available,
       };
 
       if (imageUrl) {
@@ -138,11 +179,13 @@ export default function FormAddProduct({ onClose, product }: FormAddProductProps
           <input
             type="text"
             name="name"
-            required
             className="mt-1 block w-full rounded-md border text-secondary border-secondary px-3 py-2 focus:border-orange-500 focus:outline-none"
             value={formData.name}
             onChange={handleChange}
           />
+          {errors.name && (
+            <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+          )}
         </div>
 
         {/* Descripción */}
@@ -155,6 +198,9 @@ export default function FormAddProduct({ onClose, product }: FormAddProductProps
             value={formData.description}
             onChange={handleChange}
           />
+          {errors.description && (
+            <p className="mt-1 text-sm text-red-600">{errors.description}</p>
+          )}
         </div>
 
         {/* Precio y Categoría (Grid) */}
@@ -165,20 +211,21 @@ export default function FormAddProduct({ onClose, product }: FormAddProductProps
               type="number"
               name="price"
               step="0.10"
-              required
               className="mt-1 block w-full rounded-md border text-secondary border-secondary px-3 py-2 focus:border-orange-500 focus:outline-none"
-              value={formData.price}
+              value={formData.price || ''}
               onChange={handleChange}
             />
+            {errors.price && (
+              <p className="mt-1 text-sm text-red-600">{errors.price}</p>
+            )}
           </div>
 
           <div>
             <label className="block text-sm font-medium text-secondary">Categoría</label>
             <select
               name="category_id"
-              required
               className="mt-1 block w-full rounded-md border text-secondary border-secondary px-3 py-2 focus:border-orange-500 focus:outline-none"
-              value={formData.category_id}
+              value={formData.category_id || ''}
               onChange={handleChange}
             >
               <option value="">Seleccionar...</option>
@@ -192,6 +239,9 @@ export default function FormAddProduct({ onClose, product }: FormAddProductProps
                 ))
               )}
             </select>
+            {errors.category_id && (
+              <p className="mt-1 text-sm text-red-600">{errors.category_id}</p>
+            )}
           </div>
         </div>
         <div className='grid grid-cols-2 gap-4'>

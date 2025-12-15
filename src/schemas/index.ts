@@ -86,8 +86,41 @@ export const LoginSchema = z.object({
     .max(50, "La contraseña no debe tener más de 50 caracteres"),
 })
 
+export const CreateProductSchema = z.object({
+  name: z.string()
+    .min(2, "El nombre debe tener al menos 2 caracteres")
+    .max(50, "El nombre no debe tener más de 50 caracteres"),
+  description: z.string()
+    .min(10, "La descripción debe tener al menos 10 caracteres")
+    .max(500, "La descripción no debe tener más de 500 caracteres"),
+  price: z.number().positive().min(0.50, "El precio debe ser mayor a 0.50").max(100, "El precio no debe ser mayor a 100"),
+  category_id: z.number(),
+  is_available: z.boolean().default(true),
+  image_url: z.string().nullable().transform((val) => val || ""),
+}).refine((data) => {
+  if (data.image_url) {
+    return data.image_url.length > 0;
+  }
+  return true;
+}, {
+  message: "La imagen es requerida",
+  path: ["image_url"],
+})
+
+export const CreateCategorySchema = z.object({
+  name: z.string()
+    .min(2, "El nombre debe tener al menos 2 caracteres")
+    .max(50, "El nombre no debe tener más de 50 caracteres"),
+  slug: z.string()
+    .min(2, "El slug debe tener al menos 2 caracteres")
+    .max(50, "El slug no debe tener más de 50 caracteres"),
+  image_url: z.string().nullable().transform((val) => val || ""),
+})
+
 export type Category = z.infer<typeof CategorySchema>;
 export type Product = z.infer<typeof ProductSchema>;
 export type ContactForm = z.infer<typeof ContactFormSchema>;
 export type CheckoutForm = z.infer<typeof CheckoutFormSchema>;
 export type LoginForm = z.infer<typeof LoginSchema>;
+export type CreateProductForm = z.infer<typeof CreateProductSchema>;
+export type CreateCategoryForm = z.infer<typeof CreateCategorySchema>;
