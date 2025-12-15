@@ -7,8 +7,9 @@ import { toast } from "react-toastify"
 
 export default function ProductDetail() {
   const { slug, productId } = useParams<{ slug: string, productId: string }>();
+  const actualId = productId?.split('-').pop();
   const navigate = useNavigate();
-  const { data: product, isLoading, error } = useProductById(Number(productId));
+  const { data: product, isLoading, error } = useProductById(Number(actualId));
   const { addToCart } = useCartStore();
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);

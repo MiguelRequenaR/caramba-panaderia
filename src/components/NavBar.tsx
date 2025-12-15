@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { useProducts } from "@/hooks/useProducts"
 import { useCategories } from "@/hooks/useCategories"
 import type { Product } from "@/schemas"
+import generateSlug from "@/utils/generateSlug"
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -44,11 +45,12 @@ export default function NavBar() {
     setSearchQuery("");
   }
 
-  const handleProductClick = (productId: number, categoryId: number) => {
+  const handleProductClick = (productId: number, categoryId: number, productName: string) => {
     const category = categories.find((cat) => cat.id === categoryId);
     const categorySlug = category?.slug || 'sin-categoria';
+    const productSlug = generateSlug(productName);
     
-    navigate(`/productos/${categorySlug}/${productId}`);
+    navigate(`/productos/${categorySlug}/${productSlug}-${productId}`);
     handleCloseSearch();
   }
 
@@ -128,7 +130,7 @@ export default function NavBar() {
                     {filteredProducts.map((product: Product) => (
                       <div
                         key={product.id}
-                        onClick={() => handleProductClick(product.id, product.category_id)}
+                        onClick={() => handleProductClick(product.id, product.category_id, product.name)}
                         className="overflow-hidden border-2 border-secondary rounded-lg p-2 transition-all duration-300 cursor-pointer "
                       >
                         {product.image_url && (

@@ -1,75 +1,75 @@
-# React + TypeScript + Vite
+# Caramba Panadería - Sistema de Gestión
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenido al repositorio del sistema de gestión para **Caramba Panadería**. Este proyecto permite administrar productos, categorías, pedidos y explorar la tienda online desde una interfaz moderna y fácil de usar.
 
-Currently, two official plugins are available:
+## 🥖 Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Gestión de Productos:** Agrega, edita y elimina productos.
+- **Gestión de Categorías:** Organiza productos en categorías. No se pueden eliminar categorías con productos asociados.
+- **Búsqueda Avanzada:** Encuentra productos de manera rápida y visual con buscador inteligente.
+- **Carrito de Compras:** Agrega productos al carrito, selecciona cantidad y gestiona tu compra.
+- **Gestión de Pedidos:** Administra los pedidos de los clientes.
+- **Diseño Responsivo:** Interfaz adaptable a móviles, tablets y computadoras.
 
-## React Compiler
+## 🚀 Inicio Rápido
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+1. **Clona el repositorio**
+   ```bash
+   git clone https://github.com/tu-usuario/caramba-panaderia.git
+   cd caramba-panaderia
+   ```
 
-Note: This will impact Vite dev & build performances.
+2. **Instala las dependencias**
+   ```bash
+   bun install
+   ```
 
-## Expanding the ESLint configuration
+3. **Configura el entorno**
+   
+   Crea un archivo `.env` en la raíz del proyecto con tus variables de entorno (por ejemplo, claves de Supabase, endpoints, etc).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+4. **Ejecuta la aplicación**
+   ```bash
+   bun dev
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📁 Estructura Principal
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- `src/components/` - Componentes reutilizables (NavBar, tablas, formularios)
+- `src/pages/` - Páginas de la app (admin de productos, categorías, tienda)
+- `src/store/` - Estado global (por ejemplo: carrito)
+- `src/hooks/` - Hooks personalizados para datos (productos, categorías)
+- `src/schemas/` - Tipado y validaciones
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ✨ Detalles Destacados
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Uso de **React**, **Vite**, **TypeScript**, y **Supabase** para backend.
+- Notificaciones amigables para confirmaciones y errores.
+- Protecciones para evitar borrar productos o categorías accidentalmente.
+- Búsqueda visual en tiempo real.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Scripts Útiles
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `bun dev` - Inicia el entorno de desarrollo local
+- `bun run build` - Compila la app para producción
+
+## 🤝 Contribución
+
+¡Las contribuciones son bienvenidas! Puedes hacer un fork, crear tu rama y enviar un Pull Request.
+
+1. Haz fork al repo
+2. Crea una rama (`git checkout -b feature/nueva-funcionalidad`)
+3. Haz commit a tus cambios
+4. Haz push a tu rama
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+MIT
+
+## 📬 Contacto
+
+Si tienes dudas o sugerencias, puedes contactar a los desarrolladores vía [correo electrónico](mailto:info@carambapanaderia.com).
+
+---
+

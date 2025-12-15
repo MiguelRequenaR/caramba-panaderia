@@ -1,5 +1,6 @@
 import { useProductsByCategory } from "@/hooks/useProducts";
 import { useNavigate } from "react-router-dom";
+import generateSlug from "@/utils/generateSlug";
 
 interface ProductCardProps {
   categoryId: number;
@@ -55,7 +56,7 @@ export default function ProductCard({ categoryId, categoryName, categorySlug }: 
         {products?.map((product) => (
           <div
             key={product.id}
-            onClick={() => navigate(`/productos/${categorySlug}/${product.id}`)}
+            onClick={() => navigate(`/productos/${categorySlug}/${generateSlug(product.name)}-${product.id}`)}
             className="space-y-3 cursor-pointer">
             <img 
               src={product.image_url} 
