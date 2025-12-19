@@ -18,13 +18,13 @@ export default function Contact() {
           className="flex items-center gap-2 text-secondary justify-center"
         >
           <Mail className="text-secondary" />
-          Email: <a href="mailto:info@carambapanaderia.com">info@carambapanaderia.com</a>
+          Email: <a href="mailto:info@panaderia.com">info@panaderia.com</a>
         </div>
         <div
           className="flex items-center gap-2 text-secondary justify-center"
         >
           <Phone className="text-secondary" />
-          Teléfono: <a href="tel:+51901119500">+51 901 119 500</a>
+          Teléfono: <a href="tel:+51901617809">+51 901 617 809</a>
         </div>
       </div>
       <FormContact /> 

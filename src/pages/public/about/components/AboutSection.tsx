@@ -24,7 +24,7 @@ export default function AboutSection() {
         </div>
         <img
           src={storeAndHistoryImage}
-          alt="Caramba Panadería y Pastelería"
+          alt="Panadería y Pastelería"
           className="md:w-[500px] md:h-[500px]"
           data-aos="fade-right"
           data-aos-delay="100"
@@ -43,7 +43,7 @@ export default function AboutSection() {
           data-aos-delay="100"
         >
           <h2 className="text-2xl font-bold uppercase text-secondary text-center md:text-left">
-            ¿Qué hace tan especial a Caramba Panadería y Pastelería?
+            ¿Qué hace tan especial a Panadería y Pastelería?
           </h2>
           <ul
             className="list-disc list-inside text-secondary mx-4 md:mx-0">
@@ -60,7 +60,7 @@ export default function AboutSection() {
           <div className="flex items-center mt-6 space-x-4 mx-4 md:mx-0">
             <div className="h-12 border-l-4 border-secondary mr-4"></div>
             <span className="italic text-secondary text-left">
-              “Venir a Caramba Panadería y Pastelería es regresar a casa, sentarse a la mesa y sentir el abrazo de un buen pan.”
+              “Venir a Panadería y Pastelería es regresar a casa, sentarse a la mesa y sentir el abrazo de un buen pan.”
             </span>
           </div>
         </div>

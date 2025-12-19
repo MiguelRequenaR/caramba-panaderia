@@ -15,7 +15,7 @@ export default function ProductDetail() {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
 
-  const whatsappNumber = "51901119500";
+  const whatsappNumber = "51901617809";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=Hola, quiero conocer la disponibilidad del producto ${product?.name}`;
 
   const timeSlots = [

@@ -116,7 +116,7 @@ export default function FormContact() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            placeholder="+51 901 119 500"
+            placeholder="+51 901 617 809"
             className={`border ${
               errors.phone ? "border-red-500" : "border-secondary"
             } text-secondary rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary transition`}

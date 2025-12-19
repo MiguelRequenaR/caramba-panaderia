@@ -9,7 +9,7 @@ import type { CartItem } from "@/store/useCartStore";
 
 export const sendWhatsappMessage = (
   data: ContactForm,
-  businessPhone: string = "51901119500"
+  businessPhone: string = "51901617809"
 ): void => {
   const messageText = `
   *Nuevo mensaje:*
@@ -55,7 +55,7 @@ export const sendCheckoutWhatsappMessage = (
   }).join("\n\n");
 
   const messageText = `
- *NUEVO PEDIDO - CARAMBA PANADERÍA*
+ *NUEVO PEDIDO - PANADERÍA*
 
  *DATOS DEL CLIENTE*
   *Nombre:* ${data.name}

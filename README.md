@@ -1,6 +1,6 @@
-# Caramba Panadería - Sistema de Gestión
+# Panadería - Sistema de Gestión
 
-Bienvenido al repositorio del sistema de gestión para **Caramba Panadería**. Este proyecto permite administrar productos, categorías, pedidos y explorar la tienda online desde una interfaz moderna y fácil de usar.
+Bienvenido al repositorio del sistema de gestión para **Panadería**. Este proyecto permite administrar productos, categorías, pedidos y explorar la tienda online desde una interfaz moderna y fácil de usar.
 
 ## 🥖 Características Principales
 
@@ -69,7 +69,7 @@ MIT
 
 ## 📬 Contacto
 
-Si tienes dudas o sugerencias, puedes contactar a los desarrolladores vía [correo electrónico](mailto:info@carambapanaderia.com).
+Si tienes dudas o sugerencias, puedes contactar a los desarrolladores vía [correo electrónico](mailto:m.angelrequena20@gmail.com).
 
 ---
 

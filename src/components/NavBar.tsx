@@ -205,7 +205,7 @@ export default function NavBar() {
         }`}
       >
         <div className="flex justify-between items-center p-6 border-b border-secondary/20">
-          <h1 className="text-xl font-bold uppercase">Caramba Panaderia</h1>
+          <h1 className="text-xl font-bold uppercase">Panaderia</h1>
           <X
             className="cursor-pointer hover:rotate-90 transition-transform duration-300"
             size={32}
@@ -378,7 +378,7 @@ export default function NavBar() {
           />
           <Link to="/">
             <h1 className="text-xl md:text-2xl uppercase font-bold text-secondary">
-              Caramba Panaderia
+              Panaderia y Pastelería
             </h1>
           </Link>
           <div className="flex items-center gap-3">
@@ -411,7 +411,7 @@ export default function NavBar() {
             />
             <Link to="/">
               <h1 className="text-4xl uppercase font-bold">
-                Caramba Panaderia y Pasteleria
+                Panaderia y Pasteleria
               </h1>
             </Link>
             <div className="flex items-center gap-4">

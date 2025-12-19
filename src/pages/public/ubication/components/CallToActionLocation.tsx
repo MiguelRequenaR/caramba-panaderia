@@ -17,7 +17,7 @@ export default function CallToActionLocation() {
         className="text-secondary text-lg text-center"
         data-aos="fade-up"
         data-aos-delay="200">
-          Caramba Panadería y Pastelería te espera todos los días.
+          Panadería y Pastelería te espera todos los días.
         </p>
         <a
           href="https://www.google.com/maps/place/Barranco,+Lima,+Peru" 
@@ -40,7 +40,7 @@ export default function CallToActionLocation() {
             className="relative z-10 transition-colors duration-500 text-white group-hover:text-secondary font-bold flex items-center gap-2"
           >
             <MapPin />
-            Ir a Caramba Panadería y Pastelería
+            Ir a Panadería y Pastelería
           </span>
         </a>
       </div>
