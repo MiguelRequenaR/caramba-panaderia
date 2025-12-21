@@ -14,11 +14,11 @@ export default function Footer() {
         >
           <div className="space-y-5">
             <h1 className="text-2xl font-bold uppercase text-center md:text-left">
-              Panaderia y <span className="hidden md:inline"><br /></span> Pasteleria
+              Panaderia
             </h1>
             <p className="text-center md:text-left">
-              Panadería y Pastelería es una
-              <span className="hidden md:inline"><br /></span>empresa que se dedica a la fabricación y
+              Panadería es una empresa que
+              <span className="hidden md:inline"><br /></span>se dedica a la fabricación y
               <span className="hidden md:inline"><br /></span>venta de pan y pasteles.
             </p>
             <div

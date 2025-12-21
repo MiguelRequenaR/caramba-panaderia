@@ -378,7 +378,7 @@ export default function NavBar() {
           />
           <Link to="/">
             <h1 className="text-xl md:text-2xl uppercase font-bold text-secondary">
-              Panaderia y Pastelería
+              Panaderia
             </h1>
           </Link>
           <div className="flex items-center gap-3">
@@ -411,7 +411,7 @@ export default function NavBar() {
             />
             <Link to="/">
               <h1 className="text-4xl uppercase font-bold">
-                Panaderia y Pasteleria
+                Panaderia
               </h1>
             </Link>
             <div className="flex items-center gap-4">

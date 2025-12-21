@@ -8,7 +8,7 @@ export default function StoreAndHistorySection() {
       <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20">
         <img
           src={storeAndHistoryImage}
-          alt="Panadería y Pastelería"
+          alt="Panadería"
           className="md:w-[500px] md:h-[500px]"
           data-aos="fade-right"
           data-aos-delay="100"
@@ -18,7 +18,7 @@ export default function StoreAndHistorySection() {
           data-aos-delay="200"
         >
           <h2 className="text-2xl font-bold uppercase text-secondary text-center">
-            Panadería y Pastelería <br /> te espera todos los días
+            Panadería <br /> te espera todos los días
           </h2>
           <p className="text-secondary text-center font-bold">
             Conoce nuestras un poco más sobre nuestras tiendas
@@ -50,7 +50,7 @@ export default function StoreAndHistorySection() {
             Sientate a disfrutar un poco más que solo cocina, sientate y
             <span className="hidden md:inline"> <br /> </span>
             <span className="inline md:hidden"> </span>
-            conoce la historia de Panadería y Pastelería
+            conoce la historia de Panadería
           </p>
           <div className="flex justify-center">
             <Link to="/nosotros"
