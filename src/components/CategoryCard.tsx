@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function CategoryCard() {
   const { data: categories, isLoading, error } = useCategories();
   const navigate = useNavigate();
-  
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -17,7 +17,7 @@ export default function CategoryCard() {
 
   if (error) {
     return (
-      <div className="flex justify-center items-center"> 
+      <div className="flex justify-center items-center">
         <p className="text-2xl text-red-600">
           Error al cargar categorías: {error.message}
         </p>
@@ -27,6 +27,12 @@ export default function CategoryCard() {
 
   return (
     <div className="py-20 bg-[#f8f7ee]">
+      <div className="pb-10">
+        <h2 className="text-center text-3xl font-bold uppercase text-secondary">Explora lo Nuevo</h2>
+        <p className="text-secondary text-center font-bold">
+          Todo lo que necesitas, agrupado por categorías para facilitar tu elección.
+        </p>
+      </div>
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 md:gap-6">
           {categories?.map((category) => {
@@ -37,12 +43,12 @@ export default function CategoryCard() {
                 className="space-y-3 mx-6 pb-5 cursor-pointer"
                 onClick={() => navigate(`/productos/${category.slug}`)}
               >
-                <img 
-                  src={category.image_url} 
+                <img
+                  src={category.image_url}
                   alt={category.name}
                   data-aos="fade-up"
                   className="h-[250px] w-full md:h-[400px] object-cover" />
-                <h3 
+                <h3
                   data-aos="fade-up"
                   data-aos-delay="100"
                   className="text-xl font-bold text-secondary">
@@ -64,7 +70,7 @@ export default function CategoryCard() {
             No hay categorías disponibles
           </p>
         )}
-      </div>     
+      </div>
     </div>
   )
 }

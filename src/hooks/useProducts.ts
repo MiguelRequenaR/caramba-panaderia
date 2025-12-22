@@ -5,13 +5,23 @@ import type { Product } from "@/schemas";
 const fetchProducts = async (): Promise<Product[]> => {
   const { data, error } = await supabase
     .from("products")
-    .select("*");
+    .select(`
+      *,
+      categories (
+        id,
+        name,
+        slug,
+        image_url
+      )
+    `)
+    .eq("is_available", true)
+    .order("name");
 
   if (error) {
     throw new Error(error.message);
   }
 
-  return data;
+  return data || [];
 };
 
 const fetchProductsByCategory = async (categoryId: number): Promise<Product[]> => {

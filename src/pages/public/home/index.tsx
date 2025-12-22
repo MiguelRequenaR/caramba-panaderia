@@ -1,7 +1,7 @@
 import CallToActionHome from "./components/CallToActionHome";
-import StoreAndHistorySection from "./components/StoreAndHistorySection";
 import HeroSection from "./components/HeroSection";
 import CategoryCard from "@/components/CategoryCard";
+import AllProductsSection from "./components/AllProductsSection";
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
       <HeroSection />
       <CategoryCard />
       <CallToActionHome />
-      <StoreAndHistorySection />
+      <AllProductsSection />
     </main>
   )
 }
