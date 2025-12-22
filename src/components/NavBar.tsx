@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-import { Search, User, ShoppingCart, X, Menu, ChevronRight, Minus, Plus, Trash2 } from "lucide-react"
+import { Search, User, ShoppingCart, X, Menu, Minus, Plus, Trash2 } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useCartStore } from "@/store/useCartStore"
 import { toast } from "react-toastify"
@@ -229,9 +229,8 @@ export default function NavBar() {
                 className="text-2xl font-medium block hover:translate-x-2 transition-transform flex-1"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Tienda Online
+                Productos
               </Link>
-              <ChevronRight size={24} />
             </li>
             <li>
               <Link 
