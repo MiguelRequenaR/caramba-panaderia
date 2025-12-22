@@ -71,7 +71,7 @@ export default function ProductCard({ categoryId, categoryName, categorySlug }: 
               data-aos-delay="200"
               >{product.name}</h3>
             <div
-              className="flex justify-between items-center mx-1">
+              className="flex justify-between mx-1">
               <p
                 className="text-secondary"
                 data-aos="fade-up"

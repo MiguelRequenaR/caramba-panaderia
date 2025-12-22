@@ -12,7 +12,7 @@ export default function AllProductsSection() {
   const error = errorProducts;
 
   return (
-    <section className="max-w-7xl mx-auto py-20">
+    <section className="max-w-7xl mx-auto py-20 px-4 md:px-0">
       {isLoading && (
         <div className="flex justify-center items-center py-20">
           <p className="text-2xl font-bold text-secondary">
@@ -71,7 +71,7 @@ export default function AllProductsSection() {
               >
                 {product.name}
               </h3>
-              <div className="flex justify-between items-center mx-1">
+              <div className="flex justify-between mx-1">
                 <p
                   className="text-secondary"
                   data-aos="fade-up"
