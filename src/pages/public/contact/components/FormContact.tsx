@@ -60,8 +60,8 @@ export default function FormContact() {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center px-4" data-aos="fade-up" data-aos-delay="100">
-      <form onSubmit={handleSubmit} className="w-full max-w-3xl p-8 space-y-6">
+    <section className="flex flex-col items-center justify-center " data-aos="fade-up" data-aos-delay="100">
+      <form onSubmit={handleSubmit} className="w-full max-w-3xl p-4 md:p-8 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="flex flex-col space-y-1">
             <label htmlFor="name" className="font-semibold text-secondary mb-1">
