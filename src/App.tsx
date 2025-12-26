@@ -11,6 +11,9 @@ import About from '@/pages/public/about';
 import Ubication from '@/pages/public/ubication';
 import Contact from '@/pages/public/contact';
 import Checkout from '@/pages/public/checkout';
+import PoliticaCambiosDevoluciones from '@/pages/public/politica-cambios-devoluciones';
+import PoliticaPrivacidad from '@/pages/public/politica-privacidad';
+import TerminosCondiciones from '@/pages/public/terminos-condiciones';
 import Login from '@/pages/(auth)/Login';
 import Dashboard from '@/pages/admin/Dashboard';
 import AdminProducts from '@/pages/admin/products/AdminProducts';
@@ -56,6 +59,9 @@ export default function App() {
             <Route path='/ubicacion' element={<Ubication />} />
             <Route path='/contacto' element={<Contact />} />
             <Route path='/checkout' element={<Checkout />} />
+            <Route path='/politica-cambios-devoluciones' element={<PoliticaCambiosDevoluciones />} />
+            <Route path='/politica-privacidad' element={<PoliticaPrivacidad />} />
+            <Route path='/terminos-condiciones' element={<TerminosCondiciones />} />
           </Route>
           <Route path='/admin' element={<AdminLayout />}>
             <Route path='dashboard' element={<Dashboard />} />

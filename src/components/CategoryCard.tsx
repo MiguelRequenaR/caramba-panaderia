@@ -27,7 +27,7 @@ export default function CategoryCard() {
 
   return (
     <div className="py-5 md:py-20 bg-[#f8f7ee]">
-      <div className="pb-10">
+      <div className="pb-10" data-aos="fade-up">
         <h2 className="text-center text-3xl font-bold uppercase text-secondary">Explora lo Nuevo</h2>
         <p className="text-secondary text-center font-bold">
           Todo lo que necesitas, agrupado por categorías para facilitar tu elección.

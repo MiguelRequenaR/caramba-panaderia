@@ -63,13 +63,13 @@ export default function Footer() {
               Información</h2>
             <ul>
               <li>
-                Política de Cambios y Devoluciones
+                <Link to="/politica-cambios-devoluciones">Política de Cambios y Devoluciones</Link>
               </li>
               <li>
-                Política de Privacidad
+                <Link to="/politica-privacidad">Política de Privacidad</Link>
               </li>
               <li>
-                Terminos y Condiciones
+                <Link to="/terminos-condiciones">Términos y Condiciones</Link>
               </li>
             </ul>
           </div>
